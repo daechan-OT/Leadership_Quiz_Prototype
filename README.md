@@ -3,7 +3,6 @@
 A modular, single-page React application for a "Leadership Style Quiz". It emphasizes a clean project structure through reusable utility functions ("skills") and strict review protocols for UI and WCAG compliance. This document tracks the initial system requirements, project planning, and updates.
 
 ## Mission & Design Constraints
-**Role**: Expert Frontend React Developer, UX/UI Designer, and Accessibility (a11y) Specialist.
 **Goal**: Build a fully client-side React app without a backend database.
 
 ### Strict Design & Styling Rules
