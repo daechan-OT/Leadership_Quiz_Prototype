@@ -82,39 +82,84 @@ export default function ResultsScreen({ resultsData, onRestart }) {
           </ResponsiveContainer>
         </div>
 
+        {/* SCORE BREAKDOWN — all 4 styles ranked */}
+        <div className="w-full mt-6 text-left">
+          <h3 className="text-sm font-extrabold text-quiz-primary uppercase tracking-widest mb-4">
+            Score Breakdown
+          </h3>
+          <div className="flex flex-col gap-3">
+            {[...allScores]
+              .sort((a, b) => b.score - a.score)
+              .map((style) => (
+                <div key={style.id} className="bg-white p-4 rounded-xl border border-orange-50 shadow-sm">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: style.color }} />
+                      <span className="font-semibold text-quiz-text text-sm">{style.name}</span>
+                    </div>
+                    <span className="text-sm font-bold text-quiz-text/70 tabular-nums">
+                      {style.score} / {style.maxPossible}
+                    </span>
+                  </div>
+                  {/* Animated progress bar */}
+                  <div className="w-full h-2.5 bg-orange-50 rounded-full overflow-hidden">
+                    <div
+                      className="h-full rounded-full transition-all duration-700 ease-out"
+                      style={{
+                        width: `${style.percentage}%`,
+                        backgroundColor: style.color
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+
         {/* STYLE DESCRIPTIONS */}
         <div className="w-full flex flex-col gap-6 mt-6 text-left">
-          {topStyles.map((style) => (
-            <div key={style.id} className="bg-white p-6 rounded-2xl shadow-sm border border-orange-50">
-              <h3 className="text-2xl font-bold text-quiz-text flex items-center gap-3">
-                <span className="w-4 h-4 rounded-full" style={{ backgroundColor: style.color }}></span>
-                {style.name}
-              </h3>
-              <p className="text-sm font-bold text-quiz-text/60 uppercase tracking-wide mb-4 mt-1">
-                {style.subtitle}
-              </p>
-              
-              <div className="mb-4">
-                <strong className="text-quiz-primary">Focus:</strong> <span className="text-quiz-text/90">{style.focus}</span>
-              </div>
-              
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-green-50/50 p-4 rounded-xl border border-green-100">
-                  <strong className="block text-green-800 mb-2 text-sm uppercase">Strengths</strong>
-                  <ul className="list-disc pl-5 text-sm text-quiz-text/80 space-y-1">
-                    {style.strengths.map((str, i) => <li key={i}>{str}</li>)}
-                  </ul>
+          {topStyles.map((style) => {
+            const scored = allScores.find(s => s.id === style.id);
+            return (
+              <div key={style.id} className="bg-white p-6 rounded-2xl shadow-sm border border-orange-50">
+                <div className="flex items-start justify-between gap-4 mb-1">
+                  <h3 className="text-2xl font-bold text-quiz-text flex items-center gap-3">
+                    <span className="w-4 h-4 rounded-full flex-shrink-0" style={{ backgroundColor: style.color }}></span>
+                    {style.name}
+                  </h3>
+                  {scored && (
+                    <span className="flex-shrink-0 text-sm font-bold px-3 py-1 rounded-full text-white"
+                      style={{ backgroundColor: style.color }}>
+                      {scored.score}/{scored.maxPossible} pts
+                    </span>
+                  )}
                 </div>
-                
-                <div className="bg-red-50/50 p-4 rounded-xl border border-red-100">
-                  <strong className="block text-quiz-primary mb-2 text-sm uppercase">Blind Spots</strong>
-                  <ul className="list-disc pl-5 text-sm text-quiz-text/80 space-y-1">
-                    {style.blindSpots.map((bs, i) => <li key={i}>{bs}</li>)}
-                  </ul>
+                <p className="text-sm font-bold text-quiz-text/60 uppercase tracking-wide mb-4 mt-1">
+                  {style.subtitle}
+                </p>
+
+                <div className="mb-4">
+                  <strong className="text-quiz-primary">Focus:</strong> <span className="text-quiz-text/90">{style.focus}</span>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="bg-green-50/50 p-4 rounded-xl border border-green-100">
+                    <strong className="block text-green-800 mb-2 text-sm uppercase">Strengths</strong>
+                    <ul className="list-disc pl-5 text-sm text-quiz-text/80 space-y-1">
+                      {style.strengths.map((str, i) => <li key={i}>{str}</li>)}
+                    </ul>
+                  </div>
+
+                  <div className="bg-red-50/50 p-4 rounded-xl border border-red-100">
+                    <strong className="block text-quiz-primary mb-2 text-sm uppercase">Blind Spots</strong>
+                    <ul className="list-disc pl-5 text-sm text-quiz-text/80 space-y-1">
+                      {style.blindSpots.map((bs, i) => <li key={i}>{bs}</li>)}
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

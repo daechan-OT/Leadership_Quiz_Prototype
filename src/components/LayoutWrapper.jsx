@@ -12,9 +12,9 @@ export default function LayoutWrapper({ children }) {
           {children}
         </div>
       </main>
-      <footer className="mt-8 text-sm text-quiz-primary/70 font-medium">
+      {/*<footer className="mt-8 text-sm text-quiz-primary/70 font-medium">
         Leadership Style Quiz
-      </footer>
+      </footer>*/}
     </div>
   );
 }
