@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
+import logo from '../assets/logo.png';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { Share2, RotateCcw } from 'lucide-react';
 import { exportAndShare } from '../skills/exportAndShare';
@@ -32,6 +33,11 @@ export default function ResultsScreen({ resultsData, onRestart }) {
       
       {/* CAPTURE AREA */}
       <div id="result-capture-area" className="w-full flex flex-col items-center bg-quiz-bg p-4 md:p-6 sm:-mx-6 rounded-2xl">
+        <img 
+          src={logo} 
+          alt="Smoothie King Logo" 
+          className="h-6 md:h-8 w-auto mb-6"
+        />
         <h2 className="text-xs font-extrabold text-quiz-primary uppercase tracking-widest mb-2">
           Your Results
         </h2>
