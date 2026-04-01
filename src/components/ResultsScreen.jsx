@@ -32,7 +32,7 @@ export default function ResultsScreen({ resultsData, onRestart }) {
       
       {/* CAPTURE AREA */}
       <div id="result-capture-area" className="w-full flex flex-col items-center bg-quiz-bg p-4 md:p-6 sm:-mx-6 rounded-2xl">
-        <h2 className="text-sm font-extrabold text-quiz-primary uppercase tracking-widest mb-2">
+        <h2 className="text-xs font-extrabold text-quiz-primary uppercase tracking-widest mb-2">
           Your Results
         </h2>
         
@@ -47,7 +47,7 @@ export default function ResultsScreen({ resultsData, onRestart }) {
         )}
 
         {isTie && (
-          <p className="text-lg font-medium text-quiz-text/80 mb-6 text-center">
+          <p className="text-base font-medium text-quiz-text/80 mb-6 text-center">
             Your primary styles are {topStyles.map(s => <strong key={s.id} className="text-quiz-primary">{s.name}</strong>).reduce((prev, curr) => [prev, ' and ', curr])}
           </p>
         )}
@@ -84,7 +84,7 @@ export default function ResultsScreen({ resultsData, onRestart }) {
 
         {/* SCORE BREAKDOWN — all 4 styles ranked */}
         <div className="w-full mt-6 text-left">
-          <h3 className="text-sm font-extrabold text-quiz-primary uppercase tracking-widest mb-4">
+          <h3 className="text-xs font-extrabold text-quiz-primary uppercase tracking-widest mb-4">
             Score Breakdown
           </h3>
           <div className="flex flex-col gap-3">
@@ -95,9 +95,9 @@ export default function ResultsScreen({ resultsData, onRestart }) {
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: style.color }} />
-                      <span className="font-semibold text-quiz-text text-sm">{style.name}</span>
+                      <span className="font-semibold text-quiz-text text-xs">{style.name}</span>
                     </div>
-                    <span className="text-sm font-bold text-quiz-text/70 tabular-nums">
+                    <span className="text-xs font-bold text-quiz-text/70 tabular-nums">
                       {style.score} / {style.maxPossible}
                     </span>
                   </div>
@@ -128,13 +128,13 @@ export default function ResultsScreen({ resultsData, onRestart }) {
                     {style.name}
                   </h3>
                   {scored && (
-                    <span className="flex-shrink-0 text-sm font-bold px-3 py-1 rounded-full text-white"
+                    <span className="flex-shrink-0 text-xs font-bold px-3 py-1 rounded-full text-white"
                       style={{ backgroundColor: style.color }}>
                       {scored.score}/{scored.maxPossible} pts
                     </span>
                   )}
                 </div>
-                <p className="text-sm font-bold text-quiz-text/60 uppercase tracking-wide mb-4 mt-1">
+                <p className="text-xs font-bold text-quiz-text/60 uppercase tracking-wide mb-4 mt-1">
                   {style.subtitle}
                 </p>
 
@@ -144,15 +144,15 @@ export default function ResultsScreen({ resultsData, onRestart }) {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="bg-green-50/50 p-4 rounded-xl border border-green-100">
-                    <strong className="block text-green-800 mb-2 text-sm uppercase">Strengths</strong>
-                    <ul className="list-disc pl-5 text-sm text-quiz-text/80 space-y-1">
+                    <strong className="block text-green-800 mb-2 text-xs uppercase">Strengths</strong>
+                    <ul className="list-disc pl-5 text-xs text-quiz-text/80 space-y-1">
                       {style.strengths.map((str, i) => <li key={i}>{str}</li>)}
                     </ul>
                   </div>
 
                   <div className="bg-red-50/50 p-4 rounded-xl border border-red-100">
-                    <strong className="block text-quiz-primary mb-2 text-sm uppercase">Blind Spots</strong>
-                    <ul className="list-disc pl-5 text-sm text-quiz-text/80 space-y-1">
+                    <strong className="block text-quiz-primary mb-2 text-xs uppercase">Blind Spots</strong>
+                    <ul className="list-disc pl-5 text-xs text-quiz-text/80 space-y-1">
                       {style.blindSpots.map((bs, i) => <li key={i}>{bs}</li>)}
                     </ul>
                   </div>
@@ -167,7 +167,7 @@ export default function ResultsScreen({ resultsData, onRestart }) {
       <div className="w-full flex flex-col sm:flex-row gap-4 justify-center mt-10">
         <button
           onClick={handleShare}
-          className="flex-1 max-w-xs min-h-[44px] flex items-center justify-center gap-2 px-6 py-4 bg-quiz-primary text-[#FFF9EF] rounded-xl font-bold text-lg hover:bg-[#7a0014] focus:outline-none focus:ring-4 focus:ring-quiz-primary/50 transition-all shadow-md active:scale-95"
+          className="flex-1 max-w-xs min-h-[44px] flex items-center justify-center gap-2 px-6 py-4 bg-quiz-primary text-[#FFF9EF] rounded-xl font-bold text-base hover:bg-[#7a0014] focus:outline-none focus:ring-4 focus:ring-quiz-primary/50 transition-all shadow-md active:scale-95"
           aria-label="Share or download my result image"
         >
           <Share2 size={20} /> Share Result
@@ -175,7 +175,7 @@ export default function ResultsScreen({ resultsData, onRestart }) {
         
         <button
           onClick={onRestart}
-          className="flex-1 max-w-xs min-h-[44px] flex items-center justify-center gap-2 px-6 py-4 bg-white text-quiz-primary border-2 border-quiz-primary rounded-xl font-bold text-lg hover:bg-orange-50 focus:outline-none focus:ring-4 focus:ring-quiz-primary/30 transition-all active:scale-95"
+          className="flex-1 max-w-xs min-h-[44px] flex items-center justify-center gap-2 px-6 py-4 bg-white text-quiz-primary border-2 border-quiz-primary rounded-xl font-bold text-base hover:bg-orange-50 focus:outline-none focus:ring-4 focus:ring-quiz-primary/30 transition-all active:scale-95"
           aria-label="Retake the quiz"
         >
           <RotateCcw size={20} /> Retake Quiz

@@ -37,14 +37,17 @@ export default function QuizScreen({ onComplete }) {
   }, [currentQuestionIndex, currentQuestion]);
 
   const handleOptionSelect = (styleId) => {
-    const newAnswers = { ...answers, [currentQuestionIndex]: styleId };
+    setAnswers({ ...answers, [currentQuestionIndex]: styleId });
+  };
+
+  const handleContinue = () => {
+    if (!selectedAnswer) return;
 
     if (isLastQuestion) {
       // Convert object to ordered array of styleIds before sending to results
-      const orderedAnswers = shuffledQuestions.map((_, idx) => newAnswers[idx]);
+      const orderedAnswers = shuffledQuestions.map((_, idx) => answers[idx]);
       onComplete(orderedAnswers);
     } else {
-      setAnswers(newAnswers);
       setCurrentQuestionIndex(prev => prev + 1);
     }
   };
@@ -99,18 +102,33 @@ export default function QuizScreen({ onComplete }) {
                     }`}
                   aria-hidden="true"
                 />
-                <span className="text-lg font-medium text-quiz-text">{option.text}</span>
+                <span className="text-base font-medium text-quiz-text">{option.text}</span>
               </div>
             </div>
           );
         })}
       </div>
+      
+      {/* Continue button — only active when a selection is made */}
+      <button
+        onClick={handleContinue}
+        disabled={!selectedAnswer}
+        className={`w-full mt-10 py-5 px-6 rounded-xl font-bold text-white transition-all duration-300 shadow-lg scale-[1.00] active:scale-95
+          ${selectedAnswer 
+            ? 'bg-quiz-primary hover:bg-red-800' 
+            : 'bg-gray-300 cursor-not-allowed opacity-50 grayscale shadow-none hover:bg-gray-300'
+          }`}
+      >
+        <span className="text-lg">
+          {isLastQuestion ? 'See My Results' : 'Next Question'}
+        </span>
+      </button>
 
       {/* Back button — only visible after the first question */}
       {currentQuestionIndex > 0 && (
         <button
           onClick={handleGoBack}
-          className="mt-8 flex items-center gap-2 text-quiz-primary hover:text-orange-700 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-quiz-primary/40 rounded-lg px-3 py-2 hover:bg-orange-50"
+          className="mt-8 flex items-center gap-2 text-xs text-quiz-primary hover:text-orange-700 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-quiz-primary/40 rounded-lg px-3 py-2 hover:bg-orange-50"
           aria-label="Go back to the previous question"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

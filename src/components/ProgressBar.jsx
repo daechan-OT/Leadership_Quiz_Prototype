@@ -6,7 +6,7 @@ export default function ProgressBar({ current, total }) {
   return (
     <div className="w-full mb-6" aria-hidden="true">
       <div className="flex justify-between items-end mb-2">
-        <span className="text-sm font-bold text-quiz-primary uppercase tracking-wider">
+        <span className="text-xs font-bold text-quiz-primary uppercase tracking-wider">
           Question {current} of {total}
         </span>
         <span className="text-xs font-semibold text-quiz-text/60">{percentage}%</span>
