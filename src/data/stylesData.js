@@ -13,7 +13,7 @@ export const STYLES = [
     name: 'The Teacher',
     subtitle: 'Situational Leadership',
     focus: 'Building Technical Confidence',
-    strengths: ['The Error-Free Open', 'New Hire Speed-to-Value', 'Menu Mastery'],
+    strengths: ['The Error-Free Open', 'New Hire Speed-to-Line', 'Menu Mastery'],
     blindSpots: ['The "Robot" Vibe', 'Telling over Showing', 'Frustration with Slow Learners'],
     color: STYLE_COLORS.teacher
   },
@@ -23,7 +23,7 @@ export const STYLES = [
     subtitle: 'Modeling Leadership',
     focus: 'Integrity through Action',
     strengths: ['Setting the Pace', 'Cleanliness Standards', 'Guest Connection'],
-    blindSpots: ['The "I\'ll Just Do It Myself" Trap', 'Burnout Risk', 'Silent Expectations'],
+    blindSpots: ['The "I\'ll Just Do It Myself" Trap', 'Burnout Risk', 'Unspoken Expectations'],
     color: STYLE_COLORS.roleModel
   },
   {
@@ -31,7 +31,7 @@ export const STYLES = [
     name: 'The Coach',
     subtitle: 'Transformational Leadership',
     focus: 'Asking over Telling',
-    strengths: ['Developing Shift Leads', 'Problem Solving', 'High Retention'],
+    strengths: ['Developing Team Captains', 'Problem Solving', 'High Retention'],
     blindSpots: ['Analysis Paralysis', 'Missing the "Low Performers"', 'Over-Thinking the Small Stuff'],
     color: STYLE_COLORS.coach
   },
