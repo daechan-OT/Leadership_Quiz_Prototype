@@ -13,8 +13,34 @@ export const STYLES = [
     name: 'The Teacher',
     subtitle: 'Situational Leadership',
     focus: 'Building Technical Confidence',
-    strengths: ['The Error-Free Open', 'New Hire Speed-to-Line', 'Menu Mastery'],
-    blindSpots: ['The "Robot" Vibe', 'Telling over Showing', 'Frustration with Slow Learners'],
+    strengths: [
+      {
+        title: 'Reliable Execution',
+        description: 'Your prep lists are accurate and your team knows the steps, so quality and consistency stay high.'
+      },
+      {
+        title: 'Faster Onboarding',
+        description: 'New hires reach the line or register sooner because your instructions are clear and structured.'
+      },
+      {
+        title: 'Product Knowledge',
+        description: 'You know the menu well and pass that knowledge to your team through notes and practice.'
+      }
+    ],
+    blindSpots: [
+      {
+        title: 'Process Over People',
+        description: 'Focusing on the steps can leave team members feeling like tools instead of people.'
+      },
+      {
+        title: 'Verbal-Only Teaching',
+        description: 'Some team members learn better by watching or doing. Telling alone can leave them stuck.'
+      },
+      {
+        title: 'Impatience with Repetition',
+        description: 'Losing patience when someone needs another pass can make them feel disrespected.'
+      }
+    ],
     color: STYLE_COLORS.teacher
   },
   {
@@ -22,8 +48,34 @@ export const STYLES = [
     name: 'The Role Model',
     subtitle: 'Modeling Leadership',
     focus: 'Integrity through Action',
-    strengths: ['Setting the Pace', 'Cleanliness Standards', 'Guest Connection'],
-    blindSpots: ['The "I\'ll Just Do It Myself" Trap', 'Burnout Risk', 'Unspoken Expectations'],
+    strengths: [
+      {
+        title: 'Setting the Pace',
+        description: 'You take the toughest station during a rush, and the team picks up the rhythm by watching you.'
+      },
+      {
+        title: 'Cleanliness Standards',
+        description: 'You wipe counters first, so the team holds the same standard whether you are on shift or not.'
+      },
+      {
+        title: 'Guest Tone',
+        description: 'You greet guests the same way every time, and your team adopts that tone.'
+      }
+    ],
+    blindSpots: [
+      {
+        title: 'Taking Over',
+        description: 'Stepping in to do it yourself is faster but stops your team from learning under pressure.'
+      },
+      {
+        title: 'Burnout',
+        description: 'Leading by outworking everyone is hard to sustain, and the pace can drop when you are off shift.'
+      },
+      {
+        title: 'Unspoken Standards',
+        description: 'You see what needs to happen. Your team often will not until you say it out loud.'
+      }
+    ],
     color: STYLE_COLORS.roleModel
   },
   {
@@ -31,8 +83,34 @@ export const STYLES = [
     name: 'The Coach',
     subtitle: 'Transformational Leadership',
     focus: 'Asking over Telling',
-    strengths: ['Developing Team Captains', 'Problem Solving', 'High Retention'],
-    blindSpots: ['Analysis Paralysis', 'Missing the "Low Performers"', 'Over-Thinking the Small Stuff'],
+    strengths: [
+      {
+        title: 'Developing Shift Leads',
+        description: 'You ask team members what they would do in a situation, which builds the judgment they need to lead.'
+      },
+      {
+        title: 'Recovery Learning',
+        description: 'You let team members handle hard moments first, then debrief, so they learn from the experience.'
+      },
+      {
+        title: 'Retention',
+        description: 'Team members stay because they feel like they are growing, not just working a shift.'
+      }
+    ],
+    blindSpots: [
+      {
+        title: 'Slow in Crises',
+        description: 'Some moments need a direct instruction, not a question. Asking during a rush can slow the team down.'
+      },
+      {
+        title: 'Missing Quiet Underperformers',
+        description: 'Focusing on top performers can leave the person quietly falling behind unseen.'
+      },
+      {
+        title: 'Overcoaching Small Mistakes',
+        description: 'Not everything needs a conversation. Sometimes a clear correction is more useful than a question.'
+      }
+    ],
     color: STYLE_COLORS.coach
   },
   {
@@ -40,8 +118,34 @@ export const STYLES = [
     name: 'The Supporter',
     subtitle: 'Servant/Secure Base Leadership',
     focus: 'Emotional Safety',
-    strengths: ['The "Calm" Center', 'Managing the "Battery"', 'Team Loyalty'],
-    blindSpots: ['The "Friend" vs. "Manager" Blur', 'Being "Walked Over"', 'Avoiding Tough Conversations'],
+    strengths: [
+      {
+        title: 'Steady Under Pressure',
+        description: 'You stay calm during a rush, so the team does not panic when something goes wrong.'
+      },
+      {
+        title: 'Reading Energy',
+        description: 'You notice when someone is wearing down and give them a short reset before it shows.'
+      },
+      {
+        title: 'Team Loyalty',
+        description: 'People show up for you on tough shifts because you have shown up for them.'
+      }
+    ],
+    blindSpots: [
+      {
+        title: 'Friend vs. Manager',
+        description: 'Holding people to rules can feel like hurting the relationship, so accountability slips.'
+      },
+      {
+        title: 'Taken Advantage Of',
+        description: 'Too much empathy can become a habit the team relies on. Care and clear limits both matter.'
+      },
+      {
+        title: 'Delayed Hard Talks',
+        description: 'Postponing feedback or a needed exit shifts the weight onto the rest of the team.'
+      }
+    ],
     color: STYLE_COLORS.supporter
   }
 ];
