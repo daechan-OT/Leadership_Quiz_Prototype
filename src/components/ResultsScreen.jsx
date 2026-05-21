@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, ChevronDown } from 'lucide-react';
 import { announceToScreenReader } from '../skills/a11yUtils';
 import { emitComplete } from '../utils/iframeBridge';
 
@@ -15,6 +15,16 @@ export default function ResultsScreen({ resultsData, onRestart }) {
   const handleComplete = () => {
     emitComplete();
     onRestart();
+  };
+
+  const [openSections, setOpenSections] = useState({});
+  const isSectionOpen = (key, defaultOpen) =>
+    openSections[key] !== undefined ? openSections[key] : defaultOpen;
+  const toggleSection = (key, defaultOpen) => {
+    setOpenSections(prev => {
+      const current = prev[key] !== undefined ? prev[key] : defaultOpen;
+      return { ...prev, [key]: !current };
+    });
   };
 
   const chartData = useMemo(() => {
@@ -104,6 +114,11 @@ export default function ResultsScreen({ resultsData, onRestart }) {
       <div className="w-full flex flex-col gap-2 mt-3 text-left">
         {topStyles.map((style) => {
           const scored = allScores.find(s => s.id === style.id);
+          const defaultOpen = !isTie;
+          const shineKey = `${style.id}-shine`;
+          const struggleKey = `${style.id}-struggle`;
+          const shineOpen = isSectionOpen(shineKey, defaultOpen);
+          const struggleOpen = isSectionOpen(struggleKey, defaultOpen);
           return (
             <div key={style.id} className="bg-white p-3 rounded-xl border border-orange-50">
               <div className="flex items-center justify-between gap-2 mb-1">
@@ -124,27 +139,51 @@ export default function ResultsScreen({ resultsData, onRestart }) {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <div className="bg-green-50/50 p-2.5 rounded-lg border border-green-100">
-                  <strong className="block text-green-800 mb-1.5 text-[10px] uppercase tracking-wide">Where You Shine</strong>
-                  <ul className="text-[11px] text-quiz-text/80 space-y-1.5">
-                    {style.strengths.map((s, i) => (
-                      <li key={i} className="leading-snug">
-                        <strong className="text-quiz-text font-semibold">{s.title}: </strong>
-                        <span>{s.description}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="bg-green-50/50 rounded-lg border border-green-100 overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() => toggleSection(shineKey, defaultOpen)}
+                    aria-expanded={shineOpen}
+                    className="w-full p-2.5 flex items-center justify-between text-[10px] uppercase tracking-wide text-green-800 font-bold cursor-pointer hover:bg-green-50/60 transition-colors"
+                  >
+                    <span>Where You Shine</span>
+                    <ChevronDown size={12} className={`transition-transform duration-300 ease-out ${shineOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  <div className={`grid transition-[grid-template-rows] duration-300 ease-out ${shineOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                    <div className="overflow-hidden">
+                      <ul className="px-2.5 pb-2.5 text-[11px] text-quiz-text/80 space-y-1.5">
+                        {style.strengths.map((s, i) => (
+                          <li key={i} className="leading-snug">
+                            <strong className="text-quiz-text font-semibold">{s.title}: </strong>
+                            <span>{s.description}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <div className="bg-red-50/50 p-2.5 rounded-lg border border-red-100">
-                  <strong className="block text-quiz-primary mb-1.5 text-[10px] uppercase tracking-wide">Where You Might Struggle</strong>
-                  <ul className="text-[11px] text-quiz-text/80 space-y-1.5">
-                    {style.blindSpots.map((b, i) => (
-                      <li key={i} className="leading-snug">
-                        <strong className="text-quiz-text font-semibold">{b.title}: </strong>
-                        <span>{b.description}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="bg-red-50/50 rounded-lg border border-red-100 overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() => toggleSection(struggleKey, defaultOpen)}
+                    aria-expanded={struggleOpen}
+                    className="w-full p-2.5 flex items-center justify-between text-[10px] uppercase tracking-wide text-quiz-primary font-bold cursor-pointer hover:bg-red-50/60 transition-colors"
+                  >
+                    <span>Where You Might Struggle</span>
+                    <ChevronDown size={12} className={`transition-transform duration-300 ease-out ${struggleOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  <div className={`grid transition-[grid-template-rows] duration-300 ease-out ${struggleOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                    <div className="overflow-hidden">
+                      <ul className="px-2.5 pb-2.5 text-[11px] text-quiz-text/80 space-y-1.5">
+                        {style.blindSpots.map((b, i) => (
+                          <li key={i} className="leading-snug">
+                            <strong className="text-quiz-text font-semibold">{b.title}: </strong>
+                            <span>{b.description}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
