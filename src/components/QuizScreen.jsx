@@ -68,13 +68,13 @@ export default function QuizScreen({ onComplete }) {
       <ProgressBar current={currentQuestionIndex + 1} total={shuffledQuestions.length} />
 
       <h2
-        className="text-base md:text-lg font-bold text-quiz-text w-full mb-4 leading-snug"
+        className="text-sm sm:text-base md:text-lg font-bold text-quiz-text w-full mb-3 sm:mb-4 leading-snug"
         aria-live="polite"
       >
         {currentQuestion.text}
       </h2>
 
-      <div className="w-full flex flex-col gap-2.5">
+      <div className="w-full flex flex-col gap-2 sm:gap-2.5">
         {currentQuestion.options.map((option, idx) => {
           const isSelected = selectedAnswer === option.styleId;
           return (
@@ -84,7 +84,7 @@ export default function QuizScreen({ onComplete }) {
               tabIndex={0}
               onClick={() => handleOptionSelect(option.styleId)}
               onKeyDown={(e) => handleKeyDown(e, option.styleId)}
-              className={`w-full min-h-[44px] p-3 md:p-4 rounded-xl border-2 transition-all cursor-pointer shadow-sm
+              className={`w-full min-h-[44px] p-2.5 sm:p-3 md:p-4 rounded-xl border-2 transition-all cursor-pointer shadow-sm
                 ${isSelected
                   ? 'border-quiz-primary bg-[#fff5e6] shadow-md ring-2 ring-quiz-primary/30'
                   : 'border-orange-100 bg-white hover:border-quiz-primary hover:bg-[#fff5e6] hover:shadow'
@@ -92,16 +92,16 @@ export default function QuizScreen({ onComplete }) {
               aria-label={`Option ${idx + 1}: ${option.text}`}
               aria-pressed={isSelected}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5 sm:gap-3">
                 <span
-                  className={`flex-shrink-0 w-5 h-5 rounded-full border-2 transition-all
+                  className={`flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 transition-all
                     ${isSelected
                       ? 'border-quiz-primary bg-quiz-primary'
                       : 'border-orange-200 bg-transparent'
                     }`}
                   aria-hidden="true"
                 />
-                <span className="text-sm md:text-base font-medium text-quiz-text leading-snug">{option.text}</span>
+                <span className="text-xs sm:text-sm md:text-base font-medium text-quiz-text leading-snug">{option.text}</span>
               </div>
             </div>
           );
@@ -111,13 +111,13 @@ export default function QuizScreen({ onComplete }) {
       <button
         onClick={handleContinue}
         disabled={!selectedAnswer}
-        className={`w-full mt-5 py-3 md:py-4 px-6 rounded-xl font-bold text-white transition-all duration-300 shadow-lg scale-[1.00] active:scale-95
+        className={`w-full mt-3 sm:mt-5 py-2.5 sm:py-3 md:py-4 px-6 rounded-xl font-bold text-white transition-all duration-300 shadow-lg scale-[1.00] active:scale-95
           ${selectedAnswer
             ? 'bg-quiz-primary hover:bg-red-800'
             : 'bg-gray-300 cursor-not-allowed opacity-50 grayscale shadow-none hover:bg-gray-300'
           }`}
       >
-        <span className="text-base">
+        <span className="text-sm sm:text-base">
           {isLastQuestion ? 'See My Results' : 'Next Question'}
         </span>
       </button>
@@ -125,7 +125,7 @@ export default function QuizScreen({ onComplete }) {
       {currentQuestionIndex > 0 && (
         <button
           onClick={handleGoBack}
-          className="mt-3 flex items-center gap-2 text-xs text-quiz-primary hover:text-orange-700 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-quiz-primary/40 rounded-lg px-3 py-1.5 hover:bg-orange-50"
+          className="mt-2 sm:mt-3 flex items-center gap-1.5 text-[11px] sm:text-xs text-quiz-primary hover:text-orange-700 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-quiz-primary/40 rounded-lg px-2 py-1 sm:px-3 sm:py-1.5 hover:bg-orange-50"
           aria-label="Go back to the previous question"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
