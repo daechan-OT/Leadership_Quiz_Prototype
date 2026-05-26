@@ -2,7 +2,7 @@ import { QUESTIONS } from '../data/questionsData';
 
 export function calculateResults(answers, stylesData) {
   // answers is an ordered array of styleIds, one per question
-  // totalQuestions is fixed to QUESTIONS.length (8) so percentages are
+  // totalQuestions is fixed to QUESTIONS.length (7) so percentages are
   // always relative to the maximum possible score, not just answers given.
   const totalQuestions = QUESTIONS.length;
   const scores = {};
